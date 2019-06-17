@@ -5,52 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2e3a86f-b991-429b-ac2b-571bcf6db306" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/framework.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/conf.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/mysql.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/option.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/conf/default.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/conf/option.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/fileout/rollfile.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/helper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/ilog.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/tracer/ctx.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/zaplog/log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/zaplog/sugar.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/metrics.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/redis.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/redis/helper.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/redis/redis.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracer.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gconvert/cast.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gconvert/cast_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gconvert/caste.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gconvert/convert.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gdate/gtime.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gdate/gtime_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gdate/time_util.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/byte.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/byte_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/file.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/file_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/sign.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/string.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/ghash/string_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/grand/gno.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/grand/gno_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/grand/rand.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/gstr/gstring.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -417,7 +373,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
         </state>
       </provider>
     </entry>
