@@ -1,6 +1,6 @@
 package logger
 
-import "paymananger/pkg/logger/zaplog"
+import "github.com/abaole/gframe/logger/zaplog"
 
 //默认
 var l ILog = zaplog.New()

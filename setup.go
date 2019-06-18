@@ -2,9 +2,9 @@ package framework
 
 import (
 	"context"
-	"framework/conf"
-	"framework/db"
-	"framework/redis"
+	"github.com/abaole/gframe/conf"
+	"github.com/abaole/gframe/db"
+	"github.com/abaole/gframe/redis"
 )
 
 type featureEnabledOptions struct {

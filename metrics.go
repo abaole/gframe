@@ -1,7 +1,7 @@
 package framework
 
 import (
-	"framework/conf"
+	"github.com/abaole/gframe/conf"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

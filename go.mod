@@ -1,4 +1,4 @@
-module framework
+module github.com/abaole/gframe
 
 go 1.12
 

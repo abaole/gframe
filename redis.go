@@ -1,7 +1,7 @@
 package framework
 
 import (
-	"framework/redis"
+	"github.com/abaole/gframe/redis"
 )
 
 var CRedis *redis.Cacher

@@ -3,8 +3,7 @@ package zaplog
 import (
 	"context"
 	"fmt"
-	"paymananger/pkg/logger/tracer"
-
+	"github.com/abaole/gframe/logger/tracer"
 	"go.uber.org/zap"
 )
 

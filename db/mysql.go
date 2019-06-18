@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"framework/logger"
+	"github.com/abaole/gframe/logger"
 	"sync"
 	"time"
 

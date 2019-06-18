@@ -1,7 +1,7 @@
 package framework
 
 import (
-	"framework/db"
+	"github.com/abaole/gframe/db"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 

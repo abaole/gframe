@@ -1,12 +1,10 @@
 package zaplog
 
 import (
+	"github.com/abaole/gframe/logger/conf"
+	"github.com/abaole/gframe/logger/fileout"
 	"os"
-	"paymananger/pkg/logger/conf"
-	"paymananger/pkg/logger/fileout"
 	"strings"
-
-
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

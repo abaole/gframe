@@ -1,7 +1,7 @@
 package framework
 
 import (
-	"framework/conf"
+	"github.com/abaole/gframe/conf"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/zipkin"
