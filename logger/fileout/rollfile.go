@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"time"
 
+	"go.uber.org/zap/zapcore"
+
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
@@ -17,13 +19,13 @@ type WriteSyncer interface {
 }
 
 //创建分割日志的writer
-func NewRollingFile(path, srvname string, maxSize, MaxAge int) WriteSyncer {
+func NewRollingFile(path string, maxSize, MaxAge int) zapcore.WriteSyncer {
 	if err := os.MkdirAll(path, 0766); err != nil {
 		panic(err)
 	}
 
 	return newLumberjackWriteSyncer(&lumberjack.Logger{
-		Filename:  filepath.Join(path, srvname+".log"),
+		Filename:  filepath.Join(path, "output.log"),
 		MaxSize:   maxSize, //megabytes
 		MaxAge:    MaxAge,  //days
 		LocalTime: true,

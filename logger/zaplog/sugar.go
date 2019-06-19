@@ -3,6 +3,7 @@ package zaplog
 import (
 	"context"
 	"fmt"
+
 	"github.com/abaole/gframe/logger/tracer"
 	"go.uber.org/zap"
 )
@@ -40,6 +41,21 @@ func (l *Log) Panic(s string, args ...interface{}) {
 }
 func (l *Log) Fatal(s string, args ...interface{}) {
 	l.logger.Fatal(s, getCtxFileds(args...)...)
+}
+
+func (l *Log) WithFiled(s string, field map[string]interface{}, ctx context.Context) {
+	fields := make([]zap.Field, 0)
+	if ctx != nil {
+		field["trace_id"] = tracer.GetTraceId(ctx)
+		field["parent_id"] = tracer.GetParentId(ctx)
+		field["span_id"] = tracer.GetSpanId(ctx)
+
+		for key, value := range field {
+			fields = append(fields, zap.Any(key, value))
+		}
+	}
+
+	l.logger.Info(s, fields...)
 }
 
 //

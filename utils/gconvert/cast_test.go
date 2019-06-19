@@ -2,7 +2,6 @@ package gconvert
 
 import (
 	"fmt"
-	"framework/utils"
 	"html/template"
 	"testing"
 	"time"
@@ -48,7 +47,7 @@ func TestToUintE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToUintE(test.input)
+		v, err := ToUintE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -58,7 +57,7 @@ func TestToUintE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test:
-		v = utils.ToUint(test.input)
+		v = ToUint(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -101,7 +100,7 @@ func TestToUint64E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToUint64E(test.input)
+		v, err := ToUint64E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -111,7 +110,7 @@ func TestToUint64E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test:
-		v = utils.ToUint64(test.input)
+		v = ToUint64(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -154,7 +153,7 @@ func TestToUint32E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToUint32E(test.input)
+		v, err := ToUint32E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -164,7 +163,7 @@ func TestToUint32E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test:
-		v = utils.ToUint32(test.input)
+		v = ToUint32(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -207,7 +206,7 @@ func TestToUint16E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToUint16E(test.input)
+		v, err := ToUint16E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -217,7 +216,7 @@ func TestToUint16E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToUint16(test.input)
+		v = ToUint16(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -260,7 +259,7 @@ func TestToUint8E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToUint8E(test.input)
+		v, err := ToUint8E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -270,7 +269,7 @@ func TestToUint8E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToUint8(test.input)
+		v = ToUint8(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -305,7 +304,7 @@ func TestToIntE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToIntE(test.input)
+		v, err := ToIntE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -315,7 +314,7 @@ func TestToIntE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToInt(test.input)
+		v = ToInt(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -350,7 +349,7 @@ func TestToInt64E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToInt64E(test.input)
+		v, err := ToInt64E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -360,7 +359,7 @@ func TestToInt64E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToInt64(test.input)
+		v = ToInt64(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -395,7 +394,7 @@ func TestToInt32E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToInt32E(test.input)
+		v, err := ToInt32E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -405,7 +404,7 @@ func TestToInt32E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToInt32(test.input)
+		v = ToInt32(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -440,7 +439,7 @@ func TestToInt16E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToInt16E(test.input)
+		v, err := ToInt16E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -450,7 +449,7 @@ func TestToInt16E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToInt16(test.input)
+		v = ToInt16(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -485,7 +484,7 @@ func TestToInt8E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToInt8E(test.input)
+		v, err := ToInt8E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -495,7 +494,7 @@ func TestToInt8E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToInt8(test.input)
+		v = ToInt8(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -529,7 +528,7 @@ func TestToFloat64E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToFloat64E(test.input)
+		v, err := ToFloat64E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -539,7 +538,7 @@ func TestToFloat64E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToFloat64(test.input)
+		v = ToFloat64(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -573,7 +572,7 @@ func TestToFloat32E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToFloat32E(test.input)
+		v, err := ToFloat32E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -583,7 +582,7 @@ func TestToFloat32E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToFloat32(test.input)
+		v = ToFloat32(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -629,7 +628,7 @@ func TestToStringE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringE(test.input)
+		v, err := ToStringE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -639,7 +638,7 @@ func TestToStringE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToString(test.input)
+		v = ToString(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -655,7 +654,7 @@ func (x foo) String() string {
 func TestStringerToString(t *testing.T) {
 	var x foo
 	x.val = "bar"
-	assert.Equal(t, "bar", utils.ToString(x))
+	assert.Equal(t, "bar", ToString(x))
 }
 
 type fu struct {
@@ -669,7 +668,7 @@ func (x fu) Error() string {
 func TestErrorToString(t *testing.T) {
 	var x fu
 	x.val = "bar"
-	assert.Equal(t, "bar", utils.ToString(x))
+	assert.Equal(t, "bar", ToString(x))
 }
 
 func TestStringMapStringSliceE(t *testing.T) {
@@ -732,7 +731,7 @@ func TestStringMapStringSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapStringSliceE(test.input)
+		v, err := ToStringMapStringSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -742,7 +741,7 @@ func TestStringMapStringSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMapStringSlice(test.input)
+		v = ToStringMapStringSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -767,7 +766,7 @@ func TestToStringMapE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapE(test.input)
+		v, err := ToStringMapE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -777,7 +776,7 @@ func TestToStringMapE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMap(test.input)
+		v = ToStringMap(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -802,7 +801,7 @@ func TestToStringMapBoolE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapBoolE(test.input)
+		v, err := ToStringMapBoolE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -812,7 +811,7 @@ func TestToStringMapBoolE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMapBool(test.input)
+		v = ToStringMapBool(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -840,7 +839,7 @@ func TestToStringMapIntE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapIntE(test.input)
+		v, err := ToStringMapIntE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -850,7 +849,7 @@ func TestToStringMapIntE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMapInt(test.input)
+		v = ToStringMapInt(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -879,7 +878,7 @@ func TestToStringMapInt64E(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapInt64E(test.input)
+		v, err := ToStringMapInt64E(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -889,7 +888,7 @@ func TestToStringMapInt64E(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMapInt64(test.input)
+		v = ToStringMapInt64(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -924,7 +923,7 @@ func TestToStringMapStringE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringMapStringE(test.input)
+		v, err := ToStringMapStringE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -934,7 +933,7 @@ func TestToStringMapStringE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringMapString(test.input)
+		v = ToStringMapString(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -958,7 +957,7 @@ func TestToBoolSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToBoolSliceE(test.input)
+		v, err := ToBoolSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -968,7 +967,7 @@ func TestToBoolSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToBoolSlice(test.input)
+		v = ToBoolSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -992,7 +991,7 @@ func TestToIntSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToIntSliceE(test.input)
+		v, err := ToIntSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1002,7 +1001,7 @@ func TestToIntSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToIntSlice(test.input)
+		v = ToIntSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -1023,7 +1022,7 @@ func TestToSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToSliceE(test.input)
+		v, err := ToSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1033,7 +1032,7 @@ func TestToSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToSlice(test.input)
+		v = ToSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -1055,7 +1054,7 @@ func TestToStringSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToStringSliceE(test.input)
+		v, err := ToStringSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1065,7 +1064,7 @@ func TestToStringSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToStringSlice(test.input)
+		v = ToStringSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -1090,7 +1089,7 @@ func TestToDurationSliceE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToDurationSliceE(test.input)
+		v, err := ToDurationSliceE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1100,7 +1099,7 @@ func TestToDurationSliceE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToDurationSlice(test.input)
+		v = ToDurationSlice(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
@@ -1137,7 +1136,7 @@ func TestToBoolE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToBoolE(test.input)
+		v, err := ToBoolE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1147,14 +1146,14 @@ func TestToBoolE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToBool(test.input)
+		v = ToBool(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }
 
 func BenchmarkTooBool(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		if !utils.ToBool(true) {
+		if !ToBool(true) {
 			b.Fatal("ToBool returned false")
 		}
 	}
@@ -1165,8 +1164,8 @@ func TestIndirectPointers(t *testing.T) {
 	y := &x
 	z := &y
 
-	assert.Equal(t, utils.ToInt(y), 13)
-	assert.Equal(t, utils.ToInt(z), 13)
+	assert.Equal(t, ToInt(y), 13)
+	assert.Equal(t, ToInt(z), 13)
 }
 
 func TestToTimeEE(t *testing.T) {
@@ -1215,7 +1214,7 @@ func TestToTimeEE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToTimeE(test.input)
+		v, err := ToTimeE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1225,7 +1224,7 @@ func TestToTimeEE(t *testing.T) {
 		assert.Equal(t, test.expect, v.UTC(), errmsg)
 
 		// Non-E test
-		v = utils.ToTime(test.input)
+		v = ToTime(test.input)
 		assert.Equal(t, test.expect, v.UTC(), errmsg)
 	}
 }
@@ -1267,7 +1266,7 @@ func TestToDurationE(t *testing.T) {
 	for i, test := range tests {
 		errmsg := fmt.Sprintf("i = %d", i) // assert helper message
 
-		v, err := utils.ToDurationE(test.input)
+		v, err := ToDurationE(test.input)
 		if test.iserr {
 			assert.Error(t, err, errmsg)
 			continue
@@ -1277,7 +1276,7 @@ func TestToDurationE(t *testing.T) {
 		assert.Equal(t, test.expect, v, errmsg)
 
 		// Non-E test
-		v = utils.ToDuration(test.input)
+		v = ToDuration(test.input)
 		assert.Equal(t, test.expect, v, errmsg)
 	}
 }

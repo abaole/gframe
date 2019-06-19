@@ -813,7 +813,9 @@ func (c *Cacher) Close() error {
 		return errors.New("没有Redis连接")
 	}
 	c.pool.Close()
+	return nil
 }
+
 // init 注册到cache
 // func init() {
 // 	redis.Register("redis", &Cacher{})

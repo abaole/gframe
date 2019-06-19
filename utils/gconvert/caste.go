@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"framework/utils"
 	"html/template"
 	"reflect"
 	"strconv"
@@ -48,10 +47,10 @@ func ToDurationE(i interface{}) (d time.Duration, err error) {
 	case time.Duration:
 		return s, nil
 	case int, int64, int32, int16, int8, uint, uint64, uint32, uint16, uint8:
-		d = time.Duration(utils.ToInt64(s))
+		d = time.Duration(ToInt64(s))
 		return
 	case float32, float64:
-		d = time.Duration(utils.ToFloat64(s))
+		d = time.Duration(ToFloat64(s))
 		return
 	case string:
 		if strings.ContainsAny(s, "nsuµmh") {
@@ -856,17 +855,17 @@ func ToStringMapStringE(i interface{}) (map[string]string, error) {
 		return v, nil
 	case map[string]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToString(val)
+			m[ToString(k)] = ToString(val)
 		}
 		return m, nil
 	case map[interface{}]string:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToString(val)
+			m[ToString(k)] = ToString(val)
 		}
 		return m, nil
 	case map[interface{}]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToString(val)
+			m[ToString(k)] = ToString(val)
 		}
 		return m, nil
 	case string:
@@ -886,38 +885,38 @@ func ToStringMapStringSliceE(i interface{}) (map[string][]string, error) {
 		return v, nil
 	case map[string][]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToStringSlice(val)
+			m[ToString(k)] = ToStringSlice(val)
 		}
 		return m, nil
 	case map[string]string:
 		for k, val := range v {
-			m[utils.ToString(k)] = []string{val}
+			m[ToString(k)] = []string{val}
 		}
 	case map[string]interface{}:
 		for k, val := range v {
 			switch vt := val.(type) {
 			case []interface{}:
-				m[utils.ToString(k)] = utils.ToStringSlice(vt)
+				m[ToString(k)] = ToStringSlice(vt)
 			case []string:
-				m[utils.ToString(k)] = vt
+				m[ToString(k)] = vt
 			default:
-				m[utils.ToString(k)] = []string{utils.ToString(val)}
+				m[ToString(k)] = []string{ToString(val)}
 			}
 		}
 		return m, nil
 	case map[interface{}][]string:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToStringSlice(val)
+			m[ToString(k)] = ToStringSlice(val)
 		}
 		return m, nil
 	case map[interface{}]string:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToStringSlice(val)
+			m[ToString(k)] = ToStringSlice(val)
 		}
 		return m, nil
 	case map[interface{}][]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToStringSlice(val)
+			m[ToString(k)] = ToStringSlice(val)
 		}
 		return m, nil
 	case map[interface{}]interface{}:
@@ -948,12 +947,12 @@ func ToStringMapBoolE(i interface{}) (map[string]bool, error) {
 	switch v := i.(type) {
 	case map[interface{}]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToBool(val)
+			m[ToString(k)] = ToBool(val)
 		}
 		return m, nil
 	case map[string]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToBool(val)
+			m[ToString(k)] = ToBool(val)
 		}
 		return m, nil
 	case map[string]bool:
@@ -973,7 +972,7 @@ func ToStringMapE(i interface{}) (map[string]interface{}, error) {
 	switch v := i.(type) {
 	case map[interface{}]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = val
+			m[ToString(k)] = val
 		}
 		return m, nil
 	case map[string]interface{}:
@@ -996,12 +995,12 @@ func ToStringMapIntE(i interface{}) (map[string]int, error) {
 	switch v := i.(type) {
 	case map[interface{}]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToInt(val)
+			m[ToString(k)] = ToInt(val)
 		}
 		return m, nil
 	case map[string]interface{}:
 		for k, val := range v {
-			m[k] = utils.ToInt(val)
+			m[k] = ToInt(val)
 		}
 		return m, nil
 	case map[string]int:
@@ -1037,12 +1036,12 @@ func ToStringMapInt64E(i interface{}) (map[string]int64, error) {
 	switch v := i.(type) {
 	case map[interface{}]interface{}:
 		for k, val := range v {
-			m[utils.ToString(k)] = utils.ToInt64(val)
+			m[ToString(k)] = ToInt64(val)
 		}
 		return m, nil
 	case map[string]interface{}:
 		for k, val := range v {
-			m[k] = utils.ToInt64(val)
+			m[k] = ToInt64(val)
 		}
 		return m, nil
 	case map[string]int64:
@@ -1120,7 +1119,7 @@ func ToStringSliceE(i interface{}) ([]string, error) {
 	switch v := i.(type) {
 	case []interface{}:
 		for _, u := range v {
-			a = append(a, utils.ToString(u))
+			a = append(a, ToString(u))
 		}
 		return a, nil
 	case []string:

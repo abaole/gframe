@@ -1,4 +1,4 @@
-package framework
+package gframe
 
 import (
 	"github.com/abaole/gframe/redis"

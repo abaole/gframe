@@ -1,7 +1,8 @@
-package framework
+package gframe
 
 import (
 	"context"
+
 	"github.com/abaole/gframe/conf"
 	"github.com/abaole/gframe/db"
 	"github.com/abaole/gframe/redis"
@@ -9,7 +10,6 @@ import (
 
 type featureEnabledOptions struct {
 	Db     bool `json:"db"`
-	Cache  bool `json:"redis"`
 	Tracer bool `json:"tracer"`
 	Redis  bool `json:"redis"`
 }
@@ -23,7 +23,7 @@ const (
 
 var (
 	ctx, stop         = context.WithCancel(context.Background())
-	defEnabledOptions = &featureEnabledOptions{false, false, false, false}
+	defEnabledOptions = &featureEnabledOptions{false, false, false}
 )
 
 func Init(appId, path string) error {
@@ -50,7 +50,6 @@ func Init(appId, path string) error {
 
 		initDBManger(&dbConfig)
 	}
-
 
 	if defEnabledOptions.Redis {
 		rdsConfig := redis.Options{}

@@ -2,21 +2,17 @@ package db
 
 import (
 	"fmt"
-	"github.com/abaole/gframe/logger"
 	"sync"
 	"time"
 
+	"github.com/abaole/gframe/logger"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
 
-var Db *gorm.DB
+var db *gorm.DB
 
-type DB struct {
-	Db *gorm.DB
-}
-
-func NewMysql(opts ...Option) (db *DB, err error) {
+func NewMysql(opts ...Option) (err error) {
 	o := &Options{
 		Host:            DF_Host,
 		DbName:          DF_DbName,
@@ -45,22 +41,49 @@ func NewMysql(opts ...Option) (db *DB, err error) {
 	c.DB().SetMaxIdleConns(o.MaxIdleConn)
 	c.DB().SetMaxOpenConns(o.MaxOpenConn)
 	c.DB().SetConnMaxLifetime(time.Second * time.Duration(o.ConnMaxLifeTime))
-	db.Db = c
+
+	c.Callback().Create().Replace("gorm:update_time_stamp", updateTimeStampForCreateCallback)
+	c.Callback().Update().Replace("gorm:update_time_stamp", updateTimeStampForUpdateCallback)
 	SetMysql(c)
 
 	return
 }
 
-func (db *DB) Close() {
-	db.Db.Close()
+// updateTimeStampForCreateCallback will set `CreatedOn`, `ModifiedOn` when creating
+func updateTimeStampForCreateCallback(scope *gorm.Scope) {
+	if !scope.HasError() {
+		nowTime := time.Now().Unix()
+		if createTimeField, ok := scope.FieldByName("created_at"); ok {
+			if createTimeField.IsBlank {
+				_ = createTimeField.Set(nowTime)
+			}
+		}
+
+		if modifyTimeField, ok := scope.FieldByName("updated_at"); ok {
+			if modifyTimeField.IsBlank {
+				_ = modifyTimeField.Set(nowTime)
+			}
+		}
+	}
+}
+
+// updateTimeStampForUpdateCallback will set `ModifiedOn` when updating
+func updateTimeStampForUpdateCallback(scope *gorm.Scope) {
+	if _, ok := scope.Get("gorm:update_column"); !ok {
+		_ = scope.SetColumn("updated_at", time.Now().Unix())
+	}
+}
+
+func Close() error {
+	return db.Close()
 }
 
 var migratesOnce sync.Once
 
 // migrate migrates database schemas ...
-func (db *DB) Migrate(models []interface{}) error {
+func Migrate(models []interface{}) error {
 	migratesOnce.Do(func() {
-		err := db.Db.AutoMigrate(models...).Error
+		err := db.AutoMigrate(models...).Error
 		if err != nil {
 			logger.Panicf("auto migrate db table error: %v", err)
 		}
@@ -69,6 +92,10 @@ func (db *DB) Migrate(models []interface{}) error {
 	return nil
 }
 
-func SetMysql(db *gorm.DB) {
-	Db = db
+func SetMysql(gDB *gorm.DB) {
+	db = gDB
+}
+
+func GetDB() *gorm.DB {
+	return db
 }

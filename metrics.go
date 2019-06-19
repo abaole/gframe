@@ -1,7 +1,6 @@
-package framework
+package gframe
 
 import (
-	"github.com/abaole/gframe/conf"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -46,7 +45,7 @@ func init() {
 		Name:        "rpc_durations_seconds",
 		Help:        "RPC latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"path", "code"})
 	prometheus.MustRegister(RPCDurationsSeconds)
 
@@ -55,7 +54,7 @@ func init() {
 		Name:        "db_durations_seconds",
 		Help:        "MySQL latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "table", "cmd"})
 	prometheus.MustRegister(DBDurationsSeconds)
 
@@ -64,7 +63,7 @@ func init() {
 		Name:        "mc_durations_seconds",
 		Help:        "MemCache latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "cmd"})
 	prometheus.MustRegister(MCDurationsSeconds)
 
@@ -73,7 +72,7 @@ func init() {
 		Name:        "redis_durations_seconds",
 		Help:        "Redis latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "cmd"})
 	prometheus.MustRegister(RedisDurationsSeconds)
 
@@ -82,7 +81,7 @@ func init() {
 		Name:        "http_durations_seconds",
 		Help:        "HTTP latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"url", "status"})
 	prometheus.MustRegister(HTTPDurationsSeconds)
 
@@ -90,7 +89,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "log_total",
 		Help:        "log total",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"code"})
 	prometheus.MustRegister(LogTotal)
 
@@ -98,7 +97,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "job_total",
 		Help:        "job total",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"code"})
 	prometheus.MustRegister(JobTotal)
 
@@ -107,7 +106,7 @@ func init() {
 		Name:        "mq_durations_seconds",
 		Help:        "Databus latency distributions",
 		Buckets:     defBuckets,
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "role"})
 	prometheus.MustRegister(MQDurationsSeconds)
 
@@ -115,7 +114,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_hits",
 		Help:        "net pool hits",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolHits)
 
@@ -123,7 +122,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_misses",
 		Help:        "net pool misses",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolMisses)
 
@@ -131,7 +130,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_timeouts",
 		Help:        "net pool timeouts",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolTimeouts)
 
@@ -139,7 +138,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_stale",
 		Help:        "net pool stale",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolStale)
 
@@ -147,7 +146,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_total",
 		Help:        "net pool total",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolTotal)
 
@@ -155,7 +154,7 @@ func init() {
 		Namespace:   "sniper",
 		Name:        "net_pool_idle",
 		Help:        "net pool idle",
-		ConstLabels: map[string]string{"app": conf.App.AppID},
+		ConstLabels: map[string]string{"app": "backend"},
 	}, []string{"name", "type"})
 	prometheus.MustRegister(NetPoolIdle)
 }

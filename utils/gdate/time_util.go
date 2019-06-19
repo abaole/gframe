@@ -1,4 +1,4 @@
-package utils
+package gdate
 
 import (
 	"time"
@@ -56,4 +56,22 @@ func IsSameDay(t1, t2 *time.Time) bool {
 	t1Str := t1.Format(BASE_TIME_DATE)
 	t2Str := t2.Format(BASE_TIME_DATE)
 	return t1Str == t2Str
+}
+
+func GetDaysInYearByThisYear() int {
+	now := time.Now()
+	total := 0
+	arr := []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	y, month, d := now.Date()
+	m := int(month)
+	for i := 0; i < m-1; i++ {
+		total = total + arr[i]
+	}
+	if (y%400 == 0 || (y%4 == 0 && y%100 != 0)) && m > 2 {
+		total = total + d + 1
+
+	} else {
+		total = total + d
+	}
+	return total
 }

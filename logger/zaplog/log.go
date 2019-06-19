@@ -1,10 +1,13 @@
 package zaplog
 
 import (
+	"os"
+	"path"
+	"strings"
+	"time"
+
 	"github.com/abaole/gframe/logger/conf"
 	"github.com/abaole/gframe/logger/fileout"
-	"os"
-	"strings"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -38,7 +41,7 @@ func parseLevel(lvl string) zapcore.Level {
 func New(opts ...conf.Option) *Log {
 	o := &conf.Options{
 		LogPath:     conf.LogPath,
-		LogName:     conf.LogName,
+		SvcName:     conf.SvcName,
 		LogLevel:    conf.LogLevel,
 		MaxSize:     conf.MaxSize,
 		MaxAge:      conf.MaxAge,
@@ -49,17 +52,20 @@ func New(opts ...conf.Option) *Log {
 	for _, opt := range opts {
 		opt(o)
 	}
-	writers := []zapcore.WriteSyncer{fileout.NewRollingFile(o.LogPath, o.LogName, o.MaxSize, o.MaxAge)}
+
+	directory := path.Join(o.LogPath, o.SvcName)
+
+	writers := []zapcore.WriteSyncer{fileout.NewRollingFile(directory, o.MaxSize, o.MaxAge)}
 	if o.IsStdOut == "yes" {
 		writers = append(writers, os.Stdout)
 	}
-	logger := newZapLogger(parseLevel(o.LogLevel), parseLevel(o.Stacktrace), zapcore.NewMultiWriteSyncer(writers...))
+	logger := newZapLogger(o.IsProduction, parseLevel(o.Stacktrace), zapcore.NewMultiWriteSyncer(writers...))
 	zap.RedirectStdLog(logger)
 	logger = logger.With(zap.String("project", o.ProjectName)) //加上项目名称
 	return &Log{logger: logger}
 }
 
-func newZapLogger(level, stacktrace zapcore.Level, output zapcore.WriteSyncer) *zap.Logger {
+func newZapLogger(isProduction bool, stacktrace zapcore.Level, output zapcore.WriteSyncer) *zap.Logger {
 	encCfg := zapcore.EncoderConfig{
 		TimeKey:        "@timestamp",
 		LevelKey:       "level",
@@ -70,19 +76,22 @@ func newZapLogger(level, stacktrace zapcore.Level, output zapcore.WriteSyncer) *
 		LineEnding:     zapcore.DefaultLineEnding,
 		EncodeCaller:   zapcore.ShortCallerEncoder,
 		EncodeDuration: zapcore.NanosDurationEncoder,
-		//EncodeTime: func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
-		//	enc.AppendString(t.Format("2006-01-02 15:04:05.000"))
-		//},
-		EncodeTime: zapcore.ISO8601TimeEncoder,
+		EncodeTime: func(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
+			enc.AppendString(t.Format("2006-01-02 15:04:05.000"))
+		},
 	}
-
 	var encoder zapcore.Encoder
 	dyn := zap.NewAtomicLevel()
-	//encCfg.EncodeLevel = zapcore.LowercaseLevelEncoder
-	//encoder = zapcore.NewJSONEncoder(encCfg) // zapcore.NewConsoleEncoder(encCfg)
-	dyn.SetLevel(level)
-	encCfg.EncodeLevel = zapcore.LowercaseLevelEncoder
-	encoder = zapcore.NewJSONEncoder(encCfg)
+
+	if isProduction {
+		dyn.SetLevel(zap.InfoLevel)
+		encCfg.EncodeLevel = zapcore.LowercaseLevelEncoder
+		encoder = zapcore.NewJSONEncoder(encCfg)
+	} else {
+		dyn.SetLevel(zap.DebugLevel)
+		encCfg.EncodeLevel = zapcore.LowercaseColorLevelEncoder
+		encoder = zapcore.NewConsoleEncoder(encCfg)
+	}
 
 	return zap.New(zapcore.NewCore(encoder, output, dyn), zap.AddCaller(), zap.AddStacktrace(stacktrace), zap.AddCallerSkip(2))
 }

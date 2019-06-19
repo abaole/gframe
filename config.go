@@ -1,4 +1,4 @@
-package framework
+package gframe
 
 import "github.com/spf13/viper"
 

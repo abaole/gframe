@@ -1,4 +1,4 @@
-package framework
+package gframe
 
 import (
 	"github.com/abaole/gframe/conf"
@@ -30,7 +30,6 @@ func InitTracing(opt tracerConfig) error {
 
 	return nil
 }
-
 
 func closeTracer() error {
 

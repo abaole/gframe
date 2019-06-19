@@ -1,4 +1,4 @@
-package framework
+package gframe
 
 import (
 	"github.com/abaole/gframe/db"
@@ -22,8 +22,5 @@ func initDBManger(opts *db.Options) error {
 }
 
 func closeDb() error {
-	if db.Db != nil {
-		return db.Db.Close()
-	}
-	return nil
+	return db.Close()
 }

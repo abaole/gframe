@@ -1,5 +1,7 @@
 package logger
 
+import "context"
+
 //使用string是为了减少使用Spintf
 type ILog interface {
 	//new
@@ -10,6 +12,7 @@ type ILog interface {
 	Error(string, ...interface{})
 	Panic(string, ...interface{})
 	Fatal(string, ...interface{})
+	WithFiled(s string, field map[string]interface{}, ctx context.Context)
 	//需要格式化日志 ，最后一个是context
 	Debugf(string, ...interface{})
 	Infof(string, ...interface{})
