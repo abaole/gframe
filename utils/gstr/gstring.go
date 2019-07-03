@@ -1,4 +1,4 @@
-package utils
+package gstr
 
 import (
 	"io/ioutil"
@@ -76,4 +76,13 @@ func WordWrap(text string, column int) string {
 		return text[:pos] + "\n" + WordWrap(text[pos+1:], column)
 	}
 	return initialPart + "\n" + WordWrap(text[column:], column)
+}
+
+func ContainStr(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
 }

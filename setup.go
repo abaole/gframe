@@ -37,6 +37,7 @@ func Init(appId, path string) error {
 		return err
 	}
 
+	conf.SetViper(viper)
 	if err = viper.Sub(glibConfigEnablesKey).Unmarshal(defEnabledOptions); err != nil {
 		return release(err)
 	}
