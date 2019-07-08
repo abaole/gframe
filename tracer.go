@@ -1,7 +1,6 @@
 package gframe
 
 import (
-	"github.com/abaole/gframe/conf"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/zipkin"
@@ -9,6 +8,7 @@ import (
 
 //var Tracer Tracer
 type tracerConfig struct {
+	AppName string `json:"app_name"`
 	Address string `json:"addr"`
 }
 
@@ -18,7 +18,7 @@ func InitTracing(opt tracerConfig) error {
 	propagator := zipkin.NewZipkinB3HTTPHeaderPropagator()
 	sender, _ := jaeger.NewUDPTransport(opt.Address, 0)
 	tracer, _ := jaeger.NewTracer(
-		conf.App.AppID,
+		opt.AppName,
 		jaeger.NewConstSampler(true),
 		jaeger.NewRemoteReporter(sender),
 		jaeger.TracerOptions.Injector(opentracing.HTTPHeaders, propagator),

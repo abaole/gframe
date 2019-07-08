@@ -3,9 +3,9 @@ package gframe
 import (
 	"context"
 
-	"github.com/abaole/gframe/conf"
 	"github.com/abaole/gframe/db"
 	"github.com/abaole/gframe/redis"
+	"github.com/spf13/viper"
 )
 
 type featureEnabledOptions struct {
@@ -22,6 +22,7 @@ const (
 )
 
 var (
+	Vp                *viper.Viper
 	ctx, stop         = context.WithCancel(context.Background())
 	defEnabledOptions = &featureEnabledOptions{false, false, false}
 )
@@ -30,22 +31,19 @@ func Init(appId, path string) error {
 
 	var err error
 
-	conf.SetAppID(appId)
-
-	viper := InitConfig(path)
+	Vp = InitConfig(path)
 	if err != nil {
 		return err
 	}
 
-	conf.SetViper(viper)
-	if err = viper.Sub(glibConfigEnablesKey).Unmarshal(defEnabledOptions); err != nil {
+	if err = Vp.Sub(glibConfigEnablesKey).Unmarshal(defEnabledOptions); err != nil {
 		return release(err)
 	}
 
 	// init database
 	if defEnabledOptions.Db {
 		dbConfig := db.Options{}
-		if err = viper.Sub(glibConfigDb).Unmarshal(&dbConfig); err != nil {
+		if err = Vp.Sub(glibConfigDb).Unmarshal(&dbConfig); err != nil {
 			return release(err)
 		}
 
@@ -54,7 +52,7 @@ func Init(appId, path string) error {
 
 	if defEnabledOptions.Redis {
 		rdsConfig := redis.Options{}
-		if err = viper.Sub(glibConfigRedis).Unmarshal(&rdsConfig); err != nil {
+		if err = Vp.Sub(glibConfigRedis).Unmarshal(&rdsConfig); err != nil {
 			return release(err)
 		}
 		if err = runRedisManger(&rdsConfig); err != nil {
@@ -65,7 +63,7 @@ func Init(appId, path string) error {
 	// init tracer
 	if defEnabledOptions.Tracer {
 		tCfg := tracerConfig{}
-		if err = viper.Sub(glibConfigTracer).Unmarshal(&tCfg); err != nil {
+		if err = Vp.Sub(glibConfigTracer).Unmarshal(&tCfg); err != nil {
 			return release(err)
 		}
 		if err = InitTracing(tCfg); err != nil {

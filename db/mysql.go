@@ -70,7 +70,7 @@ func updateTimeStampForCreateCallback(scope *gorm.Scope) {
 // updateTimeStampForUpdateCallback will set `ModifiedOn` when updating
 func updateTimeStampForUpdateCallback(scope *gorm.Scope) {
 	if _, ok := scope.Get("gorm:update_column"); !ok {
-		_ = scope.SetColumn("updated_at", time.Now().Unix())
+		_ = scope.SetColumn("updated_at", time.Now())
 	}
 }
 
