@@ -95,7 +95,7 @@ func VerifySign(data map[string]string, secretKey string) error {
 			p = append(p, kvPair{k, v})
 		}
 	}
-	//amount=1&bizType=16&merchantNo=112570436922904576&nonceStr=sadfasfasdf&orderNo=12313331231551&payKey=bi4v582693m1o31b0ptg&payType=N01&tranTime=123123&version=v1
+
 	p.Sort()
 	goSign := sha256Sign(p.Join(), secretKey)
 	if sign == goSign {

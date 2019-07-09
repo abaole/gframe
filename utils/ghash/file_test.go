@@ -1,14 +1,13 @@
 package ghash
 
 import (
-	"framework/utils"
 	"testing"
 )
 
 // 测试文件hash
 
 func Test_Md5File(t *testing.T) {
-	val, err := utils.Md5File("./test.txt")
+	val, err := Md5File("./test.txt")
 	if err != nil {
 		t.Error(err)
 	}
@@ -18,7 +17,7 @@ func Test_Md5File(t *testing.T) {
 }
 
 func Test_Sha1File(t *testing.T) {
-	val, err := utils.Sha1File("./test.txt")
+	val, err := Sha1File("./test.txt")
 	if err != nil {
 		t.Error(err)
 	}
@@ -28,7 +27,7 @@ func Test_Sha1File(t *testing.T) {
 }
 
 func Test_Sha256File(t *testing.T) {
-	val, err := utils.Sha256File("./test.txt")
+	val, err := Sha256File("./test.txt")
 	if err != nil {
 		t.Error(err)
 	}
@@ -38,7 +37,7 @@ func Test_Sha256File(t *testing.T) {
 }
 
 func Test_Sha512File(t *testing.T) {
-	val, err := utils.Sha512File("./test.txt")
+	val, err := Sha512File("./test.txt")
 	if err != nil {
 		t.Error(err)
 	}
