@@ -94,3 +94,35 @@ func RandWeight(total int) int {
 func GetUUID() string {
 	return uuid.NewV4().String()
 }
+
+func GenID(mode string) string {
+	sum := 10
+	//年
+	str := mode + time.Now().Format("06")
+	//一年中的第几天
+	days := strconv.Itoa(gdate.GetDaysInYearByThisYear())
+	count := len(days)
+	if count < 3 {
+		//重复字符0
+		days = strings.Repeat("0", 3-count) + days
+	}
+	//组合
+	str += days
+	//剩余随机数
+	sum = sum - 5
+	if sum < 1 {
+		sum = 5
+	}
+	//0~9999999的随机数
+	pow := math.Pow(10, float64(sum)) - 1
+
+	result := strconv.Itoa(rand.Intn(int(pow)))
+	count = len(result)
+	if count < sum {
+		//重复字符0
+		result = strings.Repeat("0", sum-count) + result
+	}
+	//组合
+	str += result
+	return str
+}

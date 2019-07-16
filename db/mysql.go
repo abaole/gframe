@@ -52,7 +52,7 @@ func NewMysql(opts ...Option) (err error) {
 // updateTimeStampForCreateCallback will set `CreatedOn`, `ModifiedOn` when creating
 func updateTimeStampForCreateCallback(scope *gorm.Scope) {
 	if !scope.HasError() {
-		nowTime := time.Now().Unix()
+		nowTime := time.Now()
 		if createTimeField, ok := scope.FieldByName("created_at"); ok {
 			if createTimeField.IsBlank {
 				_ = createTimeField.Set(nowTime)
