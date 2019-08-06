@@ -49,7 +49,7 @@ func (c *Cacher) StartAndGC(options interface{}) error {
 			opts.Network = "tcp"
 		}
 		if opts.Addr == "" {
-			opts.Addr = "redis:6379"
+			opts.Addr = "127.0.0.1:6379"
 		}
 		if opts.MaxIdle == 0 {
 			opts.MaxIdle = 3
@@ -545,7 +545,7 @@ func (c *Cacher) ZRevrangeByScore(key string, from, to, offset int64, count int)
 /**
 Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。
 Redis 客户端可以订阅任意数量的频道。
-当有新消息通过 PUBLISH 命令发送给频道 channel 时， 这个消息就会被发送给订阅它的所有客户端。
+当有新消息通过 PUBLISH 命令发送给频道 ptool 时， 这个消息就会被发送给订阅它的所有客户端。
 **/
 
 // Publish 将信息发送到指定的频道，返回接收到信息的订阅者数量

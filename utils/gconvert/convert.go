@@ -59,3 +59,9 @@ func Struct2String(src interface{}) string {
 	}
 	return string(b)
 }
+
+func FenToYuan(str string) string {
+	amount := ToFloat64(str)
+	amount = amount / 100
+	return ToString(amount)
+}

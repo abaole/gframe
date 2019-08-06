@@ -86,3 +86,16 @@ func ContainStr(s []string, e string) bool {
 	}
 	return false
 }
+
+func DeleteHttp(url string) string {
+	rs := []rune(url)
+	result := ""
+	if strings.Contains(url, "http://") {
+		result = string(rs[7:])
+	}
+	if strings.Contains(url, "https://") {
+		result = string(rs[8:])
+	}
+
+	return result
+}

@@ -36,7 +36,7 @@ func (t kvPairs) Join() string {
 }
 
 // 生成sign
-func MakeSignMD5(data map[string]string) {
+func MakeSignMD5(data map[string]string, secretKey string) string {
 	p := kvPairs{}
 	// 剔除空值 和 sign
 	for k, v := range data {
@@ -45,7 +45,11 @@ func MakeSignMD5(data map[string]string) {
 		}
 	}
 	p.Sort()
-	data["sign"] = Md5String(p.Join())
+
+	str := p.Join() + "&key=" + secretKey
+	sign := strings.ToUpper(Md5String(str))
+
+	return sign
 }
 
 func MakeSignAbc(data map[string]string) {

@@ -7,14 +7,14 @@ import (
 )
 
 //var Tracer Tracer
-type tracerConfig struct {
-	AppName string `json:"app_name"`
-	Address string `json:"addr"`
+type TracerConfig struct {
+	AppName string `mapstructure:"app_name"`
+	Address string `mapstructure:"addr"`
 }
 
-var Tracer *opentracing.Tracer
+var Tracer opentracing.Tracer
 
-func InitTracing(opt tracerConfig) error {
+func InitTracing(opt *TracerConfig) error {
 	propagator := zipkin.NewZipkinB3HTTPHeaderPropagator()
 	sender, _ := jaeger.NewUDPTransport(opt.Address, 0)
 	tracer, _ := jaeger.NewTracer(
@@ -26,7 +26,7 @@ func InitTracing(opt tracerConfig) error {
 		jaeger.TracerOptions.ZipkinSharedRPCSpan(true),
 	)
 	opentracing.SetGlobalTracer(tracer)
-	Tracer = &tracer
+	Tracer = tracer
 
 	return nil
 }

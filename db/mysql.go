@@ -41,7 +41,7 @@ func NewMysql(opts ...Option) (err error) {
 	c.DB().SetMaxIdleConns(o.MaxIdleConn)
 	c.DB().SetMaxOpenConns(o.MaxOpenConn)
 	c.DB().SetConnMaxLifetime(time.Second * time.Duration(o.ConnMaxLifeTime))
-
+	c.SingularTable(true)
 	c.Callback().Create().Replace("gorm:update_time_stamp", updateTimeStampForCreateCallback)
 	c.Callback().Update().Replace("gorm:update_time_stamp", updateTimeStampForUpdateCallback)
 	SetMysql(c)
