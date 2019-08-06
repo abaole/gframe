@@ -68,7 +68,7 @@ var AllLevels = []Level{
 //默认参数
 const (
 	LogPath      string = "./.data/" //日志保存路径
-	SvcName      string = "backend"  //日志保存的名称，不些随机生成
+	SvcName      string = "payment"  //日志保存的名称，不些随机生成
 	LogLevel     string = "debug"    //日志记录级别
 	MaxSize      int    = 100        //日志分割的尺寸 MB
 	MaxAge       int    = 7          //分割日志保存的时间 day

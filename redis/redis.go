@@ -49,7 +49,7 @@ func (c *Cacher) StartAndGC(options interface{}) error {
 			opts.Network = "tcp"
 		}
 		if opts.Addr == "" {
-			opts.Addr = "redis:6379"
+			opts.Addr = "127.0.0.1:6379"
 		}
 		if opts.MaxIdle == 0 {
 			opts.MaxIdle = 3

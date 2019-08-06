@@ -7,6 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/abaole/gframe/utils/ghash"
+
 	"github.com/rs/xid"
 
 	"github.com/abaole/gframe/utils/gdate"
@@ -93,6 +95,11 @@ func RandWeight(total int) int {
 
 func GetUUID() string {
 	return uuid.NewV4().String()
+}
+
+func GenFileID() string {
+	uuid := uuid.NewV4().String()
+	return ghash.Md5String(uuid)
 }
 
 func GenID(mode string) string {

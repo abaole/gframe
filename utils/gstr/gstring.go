@@ -1,6 +1,7 @@
 package gstr
 
 import (
+	"fmt"
 	"io/ioutil"
 	"math/rand"
 	"strings"
@@ -85,4 +86,15 @@ func ContainStr(s []string, e string) bool {
 		}
 	}
 	return false
+}
+
+func WxRate(rate float64) string {
+	TR := fmt.Sprintf("%.2f", rate)
+	rs := []rune(TR)
+	rl := len(rs)
+	if string(rs[rl-1]) == "0" {
+		rs = rs[:rl-1]
+	}
+
+	return string(rs) + "%"
 }
