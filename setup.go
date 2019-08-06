@@ -62,11 +62,12 @@ func Init(appId, path string) error {
 
 	// init tracer
 	if defEnabledOptions.Tracer {
-		tCfg := tracerConfig{}
-		if err = Vp.Sub(glibConfigTracer).Unmarshal(&tCfg); err != nil {
+		tCfg := TracerConfig{}
+		v := Vp.Sub(glibConfigTracer)
+		if err = v.Unmarshal(&tCfg); err != nil {
 			return release(err)
 		}
-		if err = InitTracing(tCfg); err != nil {
+		if err = InitTracing(&tCfg); err != nil {
 			return release(err)
 		}
 	}

@@ -98,3 +98,16 @@ func WxRate(rate float64) string {
 
 	return string(rs) + "%"
 }
+
+func DeleteHttp(url string) string {
+	rs := []rune(url)
+	result := ""
+	if strings.Contains(url, "http://") {
+		result = string(rs[7:])
+	}
+	if strings.Contains(url, "https://") {
+		result = string(rs[8:])
+	}
+
+	return result
+}
