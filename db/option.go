@@ -9,8 +9,8 @@ const (
 	DF_Port            int    = 3306
 	DF_User            string = "root"
 	DF_Password        string = "123456"
-	DF_MaxIdleConn     int    = 50
-	DF_MaxOpenConn     int    = 40
+	DF_MaxIdleConn     int    = 1000
+	DF_MaxOpenConn     int    = 1024
 	DF_ConnMaxLifeTime int    = 3600
 	DF_Charset         string = "utf8mb4"
 	DF_IsLog           bool   = true

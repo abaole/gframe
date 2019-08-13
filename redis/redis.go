@@ -244,6 +244,10 @@ func (c *Cacher) HSet(key, field string, val interface{}) (interface{}, error) {
 	return c.Do("HSET", c.getKey(key), field, value)
 }
 
+func (c *Cacher) HDel(key, field string) (interface{}, error) {
+	return c.Do("HDEL", c.getKey(key), field)
+}
+
 // HGet 获取存储在哈希表中指定字段的值
 // Example:
 //

@@ -4,7 +4,7 @@ import "testing"
 
 func TestGenID(t *testing.T) {
 	type args struct {
-		mode string
+		mode int
 	}
 	tests := []struct {
 		name string
@@ -14,14 +14,16 @@ func TestGenID(t *testing.T) {
 		{
 			"测算",
 			args{
-				"k",
+				22,
 			},
 			"k777",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := GenID(tt.args.mode); got != tt.want {
+			got := GenID(tt.args.mode)
+			t.Log(got)
+			if got != tt.want {
 				t.Errorf("GenID() = %v, want %v", got, tt.want)
 			}
 		})

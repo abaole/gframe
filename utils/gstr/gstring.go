@@ -57,6 +57,15 @@ func Substr(str string, start int, length int) string {
 	return string(rs[start:end])
 }
 
+func SubBetween(str string, start, end int) string {
+	rs := []byte(str)
+	rl := len(rs)
+	if end > rl {
+		end = rl
+	}
+	return string(rs[start:end])
+}
+
 // 中文转码
 func UTF82GBK(src []byte) (string, error) {
 	reader := transform.NewReader(strings.NewReader(string(src)), simplifiedchinese.GBK.NewEncoder())
